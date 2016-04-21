@@ -16,7 +16,11 @@ code, and don't want to structure it weirdly just so that you can run tests prop
 
 ### How do I use it?
 
-Rather than call `sinon.stub`, you can call this module as a function, which will return a stub. Like so:
+First, install it:
+
+    npm install mock-aws-sinon
+
+Then, rather than call `sinon.stub`, you can call this module as a function, which will return a stub. Like so:
 
     var mockAWSSinon = require('mock-aws-sinon');
     
