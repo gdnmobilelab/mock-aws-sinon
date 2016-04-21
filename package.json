@@ -1,0 +1,20 @@
+{
+  "name": "mock-aws-sinon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/*"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-sdk": "^2.3.4",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.3"
+  },
+  "peerDependencies": {
+    "aws-sdk": "^2.3.4",
+    "mocha": "^2.4.5"
+  }
+}
