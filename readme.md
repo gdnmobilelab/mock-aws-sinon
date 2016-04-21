@@ -40,4 +40,7 @@ you write:
 ### How does it actually work?
 
 It stubs out AWS.Request.send, which *is* available. That stub then returns a mock AWS.Response object with the return value you have provided. This idea was copied from [fakeaws](https://github.com/k-kinzal/fakemock), which works great except that I couldn't find a way to call verification methods on stubbed code, which this allows you to do.
-    
+
+### _Does_ it work?
+
+I think so? It's a very quick project I'm using in literally two or three tests, so I wouldn't say it is thoroughly tested. If you try it and run into problems let me know.
