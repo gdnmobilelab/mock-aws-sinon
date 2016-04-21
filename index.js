@@ -27,7 +27,7 @@ var processRequest = function(cb) {
 
     var response = new AWS.Response();
     response.request = this.httpRequest;
-    response.data = cachedStubs[requestKey]();
+    response.data = cachedStubs[requestKey](this.params);
     response.error = null;
     response.retryCount = 0;
     response.redirectCount = 0;
