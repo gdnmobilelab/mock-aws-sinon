@@ -27,12 +27,23 @@ var processRequest = function(cb) {
 
     var response = new AWS.Response();
     response.request = this.httpRequest;
-    response.data = cachedStubs[requestKey](this.params);
-    response.error = null;
-    response.retryCount = 0;
-    response.redirectCount = 0;
 
-    cb.call(response, response.error, response.data);
+    var callback = function(err, data) {
+        response.data = data;
+        response.error = err;
+        response.retryCount = 0;
+        response.redirectCount = 0;
+
+        cb.call(response, response.error, response.data);
+    }
+
+
+    var possibleData = cachedStubs[requestKey](this.params, callback);
+    if (typeof possibleData !== 'undefined') {
+        callback(null, possibleData);
+    }
+
+    
 };
 
 // The first time we stub something we actually stub the AWS.Request.send()
@@ -49,14 +60,17 @@ var stubRequestSend = function() {
     stubbedRequestSend = true;
 }
 
-module.exports = function(service, method) {
+module.exports = function(service, method, func) {
 
     stubRequestSend();
     
     var stubKey = getKey(service, method);
 
     if (!cachedStubs[stubKey]) {
-        cachedStubs[stubKey] = sinon.stub();
+        
+        cachedStubs[stubKey] = function() {} // is never run
+
+        sinon.stub(cachedStubs, stubKey, func);
 
         cachedStubs[stubKey].restore = function() {
             // override default stub behaviour here to account for our
