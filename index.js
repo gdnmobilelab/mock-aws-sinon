@@ -85,5 +85,5 @@ module.exports = function(service, method, func) {
 }
 
 module.exports.restore = function() {
-    AWS.Request.prototype.restore();
+    AWS.Request.prototype.send.restore();
 }
