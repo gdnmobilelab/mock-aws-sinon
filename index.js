@@ -83,3 +83,7 @@ module.exports = function(service, method, func) {
     return cachedStubs[stubKey];
 
 }
+
+module.exports.restore = function() {
+    AWS.Request.prototype.restore();
+}
