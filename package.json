@@ -14,8 +14,7 @@
     "sinon": "^1.17.3"
   },
   "peerDependencies": {
-    "aws-sdk": "^2.3.4",
-    "mocha": "^2.4.5"
+    "aws-sdk": "^2.3.4"
   },
   "repository": {
     "type" : "git",
