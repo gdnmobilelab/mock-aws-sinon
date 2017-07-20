@@ -4,23 +4,31 @@
 const AWS = require('aws-sdk');
 const sinon = require('sinon');
 
-let cachedStubs = {}; // eslint-disable-line prefer-const
+this.cachedStubs = {}; // eslint-disable-line prefer-const
+
+/**
+ * Creates a key to use for caching the AWS stubs
+ * @param {string} service - Service name
+ * @param {string} method - Method name
+ * @returns {string} key - Unique key from service and method names
+ */
 const getKey = (service, method) => {
-  // We need to store our stubs by key, so we use this to calculate one
-  // based on the service and method being called. The API uses uppercase
-  // for services, while the request does not - setting both to lowercase
-  // to remove any confusion from that
   const key = `${service.toLowerCase()}_${method.toLowerCase()}`;
   return key;
 };
 
-const processRequest = (cb) => {
+/**
+ * Creates a key to use for caching the AWS stubs
+ * @param {string} service - Service name
+ * @param {string} method - Method name
+ * @returns {string} key - Unique key from service and method names
+ */
+const processAwsRequest = (awsMockCallback) => {
+  console.log('service', this.service);
+  console.log('operation', this.operation);
   const requestKey = getKey(this.service.serviceIdentifier, this.operation);
 
-  if (!cachedStubs[requestKey]) {
-    // If we don't have a cached stub we throw an error. Future improvement
-    // will be to provide option to continue running the request as it would have
-    // otherwise, but 99% of the time you don't want that - we're testing!
+  if (!this.cachedStubs[requestKey]) {
     throw new Error(`No stub response for ${this.service.serviceIdentifier}.${this.operation}`);
   }
 
@@ -33,59 +41,73 @@ const processRequest = (cb) => {
     response.retryCount = 0;
     response.redirectCount = 0;
 
-    cb.call(response, response.error, response.data);
+    awsMockCallback.call(response, response.error, response.data);
   };
 
-  const possibleData = cachedStubs[requestKey](this.params, callback);
+  const possibleData = this.cachedStubs[requestKey](this.params, callback);
 
   if (typeof possibleData !== 'undefined') {
     callback(null, possibleData);
   }
 };
 
-// The first time we stub something we actually stub the AWS.Request.send()
-// method, which is about the only way we can effectively stub methods.
-let stubbedRequestSend = false;
-
-const stubRequestSend = () => {
-  if (stubbedRequestSend === true) {
-    return;
-  }
-
-  sinon.stub(AWS.Request.prototype, 'send').callsFake(processRequest);
-  stubbedRequestSend = true;
+/**
+ * Used to initialize this module by stubbing the AWS Request send method
+ */
+const stubAwsRequestSend = () => {
+  sinon.stub(AWS.Request.prototype, 'send').callsFake(processAwsRequest);
 };
 
 /**
- *
+ * Create an AWS mock for a service, method and callback
+ * @param {string} stubKey - Key to use for cachedStubs
+ * @param {string} service - AWS service name
+ * @param {string} method - AWS service method name
+ * @param {function} func - Callback function for mock
  */
-module.exports = (service, method, func) => {
-  stubRequestSend();
-  const stubKey = getKey(service, method);
+const createAwsMock = (stubKey, service, method, func) => {
+  // Initialize the stub with a temporary empty fuction
+  this.cachedStubs[stubKey] = () => {};
 
-  if (!cachedStubs[stubKey]) {
-    cachedStubs[stubKey] = () => {}; // is never run
+  sinon.stub(this.cachedStubs, stubKey).callsFake(func);
 
-    sinon.stub(cachedStubs, stubKey).callsFake(func);
-
-    cachedStubs[stubKey].restore = () => {
-      // override default stub behaviour here to account for our
-      // custom weirdness.
-      cachedStubs[stubKey] = null;
-    };
-  }
-
-  return cachedStubs[stubKey];
+  // Override the default stub restore behavior
+  this.cachedStubs[stubKey].restore = () => {
+    this.cachedStubs[stubKey] = null;
+  };
 };
 
-// /**
-//  *
-//  */
-// const awsRestore = () => {
-//   AWS.Request.prototype.send.restore();
-// };
-//
-// module.exports = {
-//   awsRestore,
-//   mockAwsServiceMethod,
-// };
+/**
+ * Get an AWS mock for a service and method
+ * @param {string} service - AWS service name
+ * @param {string} method - AWS service method name
+ * @param {function} func - Callback function for mock
+ * @return {Object} stub - Sinon stub for testing
+ */
+const getAwsMock = (service, method, func) => {
+  const stubKey = getKey(service, method);
+
+  if (!this.cachedStubs[stubKey]) {
+    createAwsMock(stubKey, service, method, func);
+  }
+  const stub = this.cachedStubs[stubKey];
+
+  return stub;
+};
+
+/**
+ * Used restore the AWS Request send method
+ */
+const restoreAwsRequestSend = () => {
+  AWS.Request.prototype.send.restore();
+};
+
+// Initialize the library
+stubAwsRequestSend();
+
+module.exports = {
+  stubAwsRequestSend,
+  restoreAwsRequestSend,
+  createAwsMock,
+  getAwsMock,
+};

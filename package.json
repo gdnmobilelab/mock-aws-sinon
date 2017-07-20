@@ -18,7 +18,9 @@
   },
   "nyc": {
     "exclude": [
-      "node_modules"
+      "coverage",
+      "node_modules",
+      "tests"
     ]
   },
   "scripts": {
