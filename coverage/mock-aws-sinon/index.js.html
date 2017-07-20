@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for mock-aws-sinon/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">mock-aws-sinon</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">61.11% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>22/36</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.14% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">61.11% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>22/36</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * MockAWSSinon Module
+ */
+const AWS = require('aws-sdk');
+const sinon = require('sinon');
+&nbsp;
+let cachedStubs = {}; // eslint-disable-line prefer-const
+const getKey = (service, method) =&gt; {
+  // We need to store our stubs by key, so we use this to calculate one
+  // based on the service and method being called. The API uses uppercase
+  // for services, while the request does not - setting both to lowercase
+  // to remove any confusion from that
+  const key = `${service.toLowerCase()}_${method.toLowerCase()}`;
+  return key;
+};
+&nbsp;
+const processRequest = (cb) =&gt; {
+  const requestKey = getKey(this.service.serviceIdentifier, this.operation);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!cachedStubs[requestKey]) {</span>
+    // If we don't have a cached stub we throw an error. Future improvement
+    // will be to provide option to continue running the request as it would have
+    // otherwise, but 99% of the time you don't want that - we're testing!
+<span class="cstat-no" title="statement not covered" >    throw new Error(`No stub response for ${this.service.serviceIdentifier}.${this.operation}`);</span>
+  }
+&nbsp;
+  let response = <span class="cstat-no" title="statement not covered" >new AWS.Response();</span> // eslint-disable-line prefer-const
+<span class="cstat-no" title="statement not covered" >  response.request = this.httpRequest;</span>
+&nbsp;
+  const callback = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>rr, data) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    response.data = data;</span>
+<span class="cstat-no" title="statement not covered" >    response.error = err;</span>
+<span class="cstat-no" title="statement not covered" >    response.retryCount = 0;</span>
+<span class="cstat-no" title="statement not covered" >    response.redirectCount = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    cb.call(response, response.error, response.data);</span>
+  };
+&nbsp;
+  const possibleData = <span class="cstat-no" title="statement not covered" >cachedStubs[requestKey](this.params, callback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (typeof possibleData !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >    callback(null, possibleData);</span>
+  }
+};
+&nbsp;
+// The first time we stub something we actually stub the AWS.Request.send()
+// method, which is about the only way we can effectively stub methods.
+let stubbedRequestSend = false;
+&nbsp;
+const stubRequestSend = () =&gt; {
+  if (stubbedRequestSend === true) {
+    return;
+  }
+&nbsp;
+  sinon.stub(AWS.Request.prototype, 'send').callsFake(processRequest);
+  stubbedRequestSend = true;
+};
+&nbsp;
+/**
+ *
+ */
+module.exports = (service, method, func) =&gt; {
+  stubRequestSend();
+  const stubKey = getKey(service, method);
+&nbsp;
+  if (!cachedStubs[stubKey]) {
+    cachedStubs[stubKey] = <span class="fstat-no" title="function not covered" >()</span> =&gt; {}; // is never run
+&nbsp;
+    sinon.stub(cachedStubs, stubKey).callsFake(func);
+&nbsp;
+    cachedStubs[stubKey].restore = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+      // override default stub behaviour here to account for our
+      // custom weirdness.
+<span class="cstat-no" title="statement not covered" >      cachedStubs[stubKey] = null;</span>
+    };
+  }
+&nbsp;
+  return cachedStubs[stubKey];
+};
+&nbsp;
+// /**
+//  *
+//  */
+// const awsRestore = () =&gt; {
+//   AWS.Request.prototype.send.restore();
+// };
+//
+// module.exports = {
+//   awsRestore,
+//   mockAwsServiceMethod,
+// };
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jul 20 2017 12:05:16 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
