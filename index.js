@@ -70,7 +70,7 @@ const createAwsMock = function (stubKey, service, method, func) { // eslint-disa
   sinon.stub(cachedStubs, stubKey).callsFake(func);
 
   // Override the default stub restore behavior
-  cachedStubs[stubKey].restore = () => {
+  cachedStubs[stubKey].restore = function () { // eslint-disable-line func-names
     cachedStubs[stubKey] = null;
   };
 };
@@ -94,6 +94,19 @@ const getAwsMock = function (service, method, func) { // eslint-disable-line fun
 };
 
 /**
+ * Remove an AWS stub from the cachedStubs
+ * @param {string} service - AWS service name
+ * @param {string} method - AWS service method name
+ */
+const deleteAwsMock = function (service, method) { // eslint-disable-line func-names
+  const stubKey = getKey(service, method);
+
+  if (cachedStubs[stubKey]) {
+    cachedStubs[stubKey].restore();
+  }
+};
+
+/**
  * Used restore the AWS Request send method
  */
 const restoreAwsRequestSend = function () { // eslint-disable-line func-names
@@ -107,5 +120,6 @@ module.exports = {
   stubAwsRequestSend,
   restoreAwsRequestSend,
   createAwsMock,
+  deleteAwsMock,
   getAwsMock,
 };

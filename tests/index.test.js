@@ -1,13 +1,13 @@
 /**
  * MockAWSSinon Module tests
  */
-const mockAwsSinon = require('../index');
+const { getAwsMock } = require('../index');
 const AWS = require('aws-sdk');
 const assert = require('assert');
 
 describe('AWS Mock Sinon', () => {
   it('Should mock a request', (done) => {
-    mockAwsSinon.getAwsMock('S3', 'getObject', () => {
+    getAwsMock('S3', 'getObject', () => {
       return {
         what: 'yes',
       }
@@ -18,13 +18,13 @@ describe('AWS Mock Sinon', () => {
     },
     (err, resp) => {
       assert.equal(resp.what, 'yes');
-      assert.equal(mockAwsSinon.getAwsMock('S3', 'getObject').calledOnce, true);
+      assert.equal(getAwsMock('S3', 'getObject').calledOnce, true);
       done();
     });
   });
 
   it('Should allow you to use a function that returns immediately', (done) => {
-    mockAwsSinon.getAwsMock('S3', 'putObject', (params, cb) => { // eslint-disable-line no-unused-vars
+    getAwsMock('S3', 'putObject', (params, cb) => { // eslint-disable-line no-unused-vars
       const reply = 'hello';
       return reply;
     });
@@ -39,7 +39,7 @@ describe('AWS Mock Sinon', () => {
   });
 
   it('Should allow you to use a function that uses a callback', (done) => {
-    mockAwsSinon.getAwsMock('S3', 'putObject', (params, cb) => {
+    getAwsMock('S3', 'putObject', (params, cb) => {
       cb(null, 'hello');
     });
 
