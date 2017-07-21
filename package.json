@@ -24,7 +24,7 @@
     ]
   },
   "scripts": {
-    "test": "node_modules/eslint/bin/eslint.js ./ && node_modules/nyc/bin/nyc.js --all --reporter=html --reporter=text mocha tests/*"
+    "test": "node_modules/eslint/bin/eslint.js ./ && node_modules/nyc/bin/nyc.js --all --reporter=html --reporter=text node_modules/mocha/bin/mocha tests/*"
   },
   "repository": {
     "type" : "git",

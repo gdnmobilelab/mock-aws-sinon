@@ -4,7 +4,7 @@
 const AWS = require('aws-sdk');
 const sinon = require('sinon');
 
-this.cachedStubs = {}; // eslint-disable-line prefer-const
+let cachedStubs = {}; // eslint-disable-line prefer-const, no-unused-vars
 
 /**
  * Creates a key to use for caching the AWS stubs
@@ -12,7 +12,7 @@ this.cachedStubs = {}; // eslint-disable-line prefer-const
  * @param {string} method - Method name
  * @returns {string} key - Unique key from service and method names
  */
-const getKey = (service, method) => {
+const getKey = function (service, method) { // eslint-disable-line func-names
   const key = `${service.toLowerCase()}_${method.toLowerCase()}`;
   return key;
 };
@@ -23,19 +23,17 @@ const getKey = (service, method) => {
  * @param {string} method - Method name
  * @returns {string} key - Unique key from service and method names
  */
-const processAwsRequest = (awsMockCallback) => {
-  console.log('service', this.service);
-  console.log('operation', this.operation);
+const processAwsRequest = function (awsMockCallback) { // eslint-disable-line func-names
   const requestKey = getKey(this.service.serviceIdentifier, this.operation);
 
-  if (!this.cachedStubs[requestKey]) {
+  if (!cachedStubs[requestKey]) {
     throw new Error(`No stub response for ${this.service.serviceIdentifier}.${this.operation}`);
   }
 
   let response = new AWS.Response(); // eslint-disable-line prefer-const
   response.request = this.httpRequest;
 
-  const callback = (err, data) => {
+  const callback = function (err, data) { // eslint-disable-line func-names
     response.data = data;
     response.error = err;
     response.retryCount = 0;
@@ -44,7 +42,7 @@ const processAwsRequest = (awsMockCallback) => {
     awsMockCallback.call(response, response.error, response.data);
   };
 
-  const possibleData = this.cachedStubs[requestKey](this.params, callback);
+  const possibleData = cachedStubs[requestKey](this.params, callback);
 
   if (typeof possibleData !== 'undefined') {
     callback(null, possibleData);
@@ -54,7 +52,7 @@ const processAwsRequest = (awsMockCallback) => {
 /**
  * Used to initialize this module by stubbing the AWS Request send method
  */
-const stubAwsRequestSend = () => {
+const stubAwsRequestSend = function () { // eslint-disable-line func-names
   sinon.stub(AWS.Request.prototype, 'send').callsFake(processAwsRequest);
 };
 
@@ -65,15 +63,15 @@ const stubAwsRequestSend = () => {
  * @param {string} method - AWS service method name
  * @param {function} func - Callback function for mock
  */
-const createAwsMock = (stubKey, service, method, func) => {
+const createAwsMock = function (stubKey, service, method, func) { // eslint-disable-line func-names
   // Initialize the stub with a temporary empty fuction
-  this.cachedStubs[stubKey] = () => {};
+  cachedStubs[stubKey] = () => {};
 
-  sinon.stub(this.cachedStubs, stubKey).callsFake(func);
+  sinon.stub(cachedStubs, stubKey).callsFake(func);
 
   // Override the default stub restore behavior
-  this.cachedStubs[stubKey].restore = () => {
-    this.cachedStubs[stubKey] = null;
+  cachedStubs[stubKey].restore = () => {
+    cachedStubs[stubKey] = null;
   };
 };
 
@@ -84,13 +82,13 @@ const createAwsMock = (stubKey, service, method, func) => {
  * @param {function} func - Callback function for mock
  * @return {Object} stub - Sinon stub for testing
  */
-const getAwsMock = (service, method, func) => {
+const getAwsMock = function (service, method, func) { // eslint-disable-line func-names
   const stubKey = getKey(service, method);
 
-  if (!this.cachedStubs[stubKey]) {
+  if (!cachedStubs[stubKey]) {
     createAwsMock(stubKey, service, method, func);
   }
-  const stub = this.cachedStubs[stubKey];
+  const stub = cachedStubs[stubKey];
 
   return stub;
 };
@@ -98,7 +96,7 @@ const getAwsMock = (service, method, func) => {
 /**
  * Used restore the AWS Request send method
  */
-const restoreAwsRequestSend = () => {
+const restoreAwsRequestSend = function () { // eslint-disable-line func-names
   AWS.Request.prototype.send.restore();
 };
 
