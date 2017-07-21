@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.71% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>36/42</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">60% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>6/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.71% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>36/42</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * MockAWSSinon Module
+ */
+const AWS = require('aws-sdk');
+const sinon = require('sinon');
+&nbsp;
+let cachedStubs = {}; // eslint-disable-line prefer-const, no-unused-vars
+&nbsp;
+/**
+ * Creates a key to use for caching the AWS stubs
+ * @param {string} service - Service name
+ * @param {string} method - Method name
+ * @returns {string} key - Unique key from service and method names
+ */
+const getKey = function (service, method) { // eslint-disable-line func-names
+  const key = `${service.toLowerCase()}_${method.toLowerCase()}`;
+  return key;
+};
+&nbsp;
+/**
+ * Creates a key to use for caching the AWS stubs
+ * @param {string} service - Service name
+ * @param {string} method - Method name
+ * @returns {string} key - Unique key from service and method names
+ */
+const processAwsRequest = function (awsMockCallback) { // eslint-disable-line func-names
+  const requestKey = getKey(this.service.serviceIdentifier, this.operation);
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!cachedStubs[requestKey]) {
+<span class="cstat-no" title="statement not covered" >    throw new Error(`No stub response for ${this.service.serviceIdentifier}.${this.operation}`);</span>
+  }
+&nbsp;
+  let response = new AWS.Response(); // eslint-disable-line prefer-const
+  response.request = this.httpRequest;
+&nbsp;
+  const callback = function (err, data) { // eslint-disable-line func-names
+    response.data = data;
+    response.error = err;
+    response.retryCount = 0;
+    response.redirectCount = 0;
+&nbsp;
+    awsMockCallback.call(response, response.error, response.data);
+  };
+&nbsp;
+  const possibleData = cachedStubs[requestKey](this.params, callback);
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof possibleData !== 'undefined') {
+    callback(null, possibleData);
+  }
+};
+&nbsp;
+/**
+ * Used to initialize this module by stubbing the AWS Request send method
+ */
+const stubAwsRequestSend = function () { // eslint-disable-line func-names
+  sinon.stub(AWS.Request.prototype, 'send').callsFake(processAwsRequest);
+};
+&nbsp;
+/**
+ * Create an AWS mock for a service, method and callback
+ * @param {string} stubKey - Key to use for cachedStubs
+ * @param {string} service - AWS service name
+ * @param {string} method - AWS service method name
+ * @param {function} func - Callback function for mock
+ */
+const createAwsMock = function (stubKey, service, method, func) { // eslint-disable-line func-names
+  // Initialize the stub with a temporary empty fuction
+  cachedStubs[stubKey] = <span class="fstat-no" title="function not covered" >()</span> =&gt; {};
+&nbsp;
+  sinon.stub(cachedStubs, stubKey).callsFake(func);
+&nbsp;
+  // Override the default stub restore behavior
+  cachedStubs[stubKey].restore = <span class="fstat-no" title="function not covered" >fu</span>nction () { // eslint-disable-line func-names
+<span class="cstat-no" title="statement not covered" >    cachedStubs[stubKey] = null;</span>
+  };
+};
+&nbsp;
+/**
+ * Get an AWS mock for a service and method
+ * @param {string} service - AWS service name
+ * @param {string} method - AWS service method name
+ * @param {function} func - Callback function for mock
+ * @return {Object} stub - Sinon stub for testing
+ */
+const getAwsMock = function (service, method, func) { // eslint-disable-line func-names
+  const stubKey = getKey(service, method);
+&nbsp;
+  if (!cachedStubs[stubKey]) {
+    createAwsMock(stubKey, service, method, func);
+  }
+  const stub = cachedStubs[stubKey];
+&nbsp;
+  return stub;
+};
+&nbsp;
+/**
+ * Remove an AWS stub from the cachedStubs
+ * @param {string} service - AWS service name
+ * @param {string} method - AWS service method name
+ */
+const deleteAwsMock = <span class="fstat-no" title="function not covered" >fu</span>nction (service, method) { // eslint-disable-line func-names
+  const stubKey = <span class="cstat-no" title="statement not covered" >getKey(service, method);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (cachedStubs[stubKey]) {</span>
+<span class="cstat-no" title="statement not covered" >    cachedStubs[stubKey].restore();</span>
+  }
+};
+&nbsp;
+/**
+ * Used restore the AWS Request send method
+ */
+const restoreAwsRequestSend = <span class="fstat-no" title="function not covered" >fu</span>nction () { // eslint-disable-line func-names
+<span class="cstat-no" title="statement not covered" >  AWS.Request.prototype.send.restore();</span>
+};
+&nbsp;
+// Initialize the library
+stubAwsRequestSend();
+&nbsp;
+module.exports = {
+  stubAwsRequestSend,
+  restoreAwsRequestSend,
+  createAwsMock,
+  deleteAwsMock,
+  getAwsMock,
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jul 21 2017 10:20:43 GMT-0400 (EDT)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>
