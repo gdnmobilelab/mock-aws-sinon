@@ -43,6 +43,42 @@ describe("AWS Mock Sinon", function() {
             assert.equal(resp, "hello");
         })
     })
-
     
+    it("Should allow you to easily override a stub", function(done) {
+        MockAWSSinon('S3', 'putObject', function(params, cb) {
+            return "hello"
+        })
+
+        MockAWSSinon('S3', 'putObject', function(params, cb) {
+            return "world"
+        })
+
+        new AWS.S3().putObject({
+            test: 'test'
+        }, function(err, resp) {
+            assert.equal(resp, "world");
+            assert.equal(MockAWSSinon('S3', 'getObject').calledOnce, true);            
+            done();
+        })
+    })
+
+    it("Should allow multiple teardowns and setups", function(done) {
+        MockAWSSinon('S3', 'putObject', function(params, cb) {
+            return "hello"
+        })
+
+        MockAWSSinon.restore();
+
+        MockAWSSinon('S3', 'putObject', function(params, cb) {
+            return "world"
+        })
+
+        new AWS.S3().putObject({
+            test: 'test'
+        }, function(err, resp) {
+            assert.equal(resp, "world");
+            assert.equal(MockAWSSinon('S3', 'putObject').calledOnce, true);            
+            done();
+        })
+    })
 })

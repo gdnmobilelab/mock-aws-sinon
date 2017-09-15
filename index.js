@@ -66,7 +66,7 @@ module.exports = function(service, method, func) {
     
     var stubKey = getKey(service, method);
 
-    if (!cachedStubs[stubKey]) {
+    if (func || !cachedStubs[stubKey]) {
         
         cachedStubs[stubKey] = function() {} // is never run
 
@@ -85,5 +85,7 @@ module.exports = function(service, method, func) {
 }
 
 module.exports.restore = function() {
+    cachedStubs = {};
+    stubbedRequestSend = false;
     AWS.Request.prototype.send.restore();
 }
