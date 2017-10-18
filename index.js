@@ -12,6 +12,15 @@ var getKey = function(service, method) {
     return service.toLowerCase() + '_' + method.toLowerCase();
 };
 
+// Support sinon pre and post v2
+var stub = function(obj, key, func) {
+    if (sinon.stub.callsFake) {
+        sinon.stub(obj, key).callsFake(func);
+    } else {
+        sinon.stub(obj, key, func);
+    }
+}
+
 var processRequest = function(cb) {
 
     var requestKey = getKey(this.service.serviceIdentifier, this.operation);
@@ -56,7 +65,8 @@ var stubRequestSend = function() {
         return;
     }
 
-    sinon.stub(AWS.Request.prototype, "send", processRequest);
+    stub(AWS.Request.prototype, "send", processRequest);
+
     stubbedRequestSend = true;
 }
 
@@ -70,7 +80,7 @@ module.exports = function(service, method, func) {
         
         cachedStubs[stubKey] = function() {} // is never run
 
-        sinon.stub(cachedStubs, stubKey, func);
+        stub(cachedStubs, stubKey, func);
 
         cachedStubs[stubKey].restore = function() {
             // override default stub behaviour here to account for our
