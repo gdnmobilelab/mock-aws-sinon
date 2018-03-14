@@ -4,8 +4,11 @@ var assert = require('assert');
 
 describe("AWS Mock Sinon", function() {
 
-    it("Should mock a request", function(done) {
+    afterEach(() => {
+        MockAWSSinon.restore();
+    });
 
+    it("Should mock a request", function(done) {
         MockAWSSinon('S3', 'getObject').returns({
             what: 'yes'
         });
@@ -17,6 +20,17 @@ describe("AWS Mock Sinon", function() {
             assert.equal(MockAWSSinon('S3', 'getObject').calledOnce, true);
             done();
         })
+    });
+    it("Should work with promises", async function() {
+        MockAWSSinon('S3', 'getObject').returns({
+            what: 'yes'
+        });
+        var resp = await new AWS.S3().getObject({
+            Bucket: 'what'
+        }).promise();
+
+        assert.equal(resp.what, 'yes');
+        assert.equal(MockAWSSinon('S3', 'getObject').calledOnce, true);
     });
 
     it("Should allow you to use a function that returns immediately", function(done) {
@@ -57,7 +71,7 @@ describe("AWS Mock Sinon", function() {
             test: 'test'
         }, function(err, resp) {
             assert.equal(resp, "world");
-            assert.equal(MockAWSSinon('S3', 'getObject').calledOnce, true);            
+            assert.equal(MockAWSSinon('S3', 'putObject').calledOnce, true);
             done();
         })
     })

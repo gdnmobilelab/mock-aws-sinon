@@ -66,6 +66,18 @@ var stubRequestSend = function() {
     }
 
     stub(AWS.Request.prototype, "send", processRequest);
+    stub(AWS.Request.prototype, "promise", function () {
+        var request = this;
+        return new Promise((resolve, reject) => {
+            processRequest.call(request, ((err, data) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(data);
+                }
+            }));
+        });
+    });
 
     stubbedRequestSend = true;
 }
@@ -98,4 +110,5 @@ module.exports.restore = function() {
     cachedStubs = {};
     stubbedRequestSend = false;
     AWS.Request.prototype.send.restore();
+    AWS.Request.prototype.promise.restore();
 }
