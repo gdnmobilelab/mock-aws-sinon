@@ -47,11 +47,14 @@ var processRequest = function(cb) {
     }
 
 
-    var possibleData = cachedStubs[requestKey](this.params, callback);
-    if (typeof possibleData !== 'undefined') {
-        callback(null, possibleData);
+    try {
+        var possibleData = cachedStubs[requestKey](this.params, callback);
+        if (typeof possibleData !== 'undefined') {
+            callback(null, possibleData);
+        }
+    } catch (e) {
+        callback(e, null);
     }
-
     
 };
 
