@@ -32,7 +32,7 @@ Then, rather than call `sinon.stub`, you can call this module as a function, whi
         assert.equal(response.an, 'object') // true
     })
     
-If you wish to use the sinon vertification helpers, you can get run the function again to retrieve the same
+If you wish to use the sinon verification helpers, you can get run the function again to retrieve the same
 stub. So instead of doing:
 
     AWS.S3.prototype.getObject.calledOnce()
