@@ -95,19 +95,4 @@ describe("AWS Mock Sinon", function() {
             done();
         })
     })
-
-    it("Should allow you to throw an error", function(done) {
-        MockAWSSinon('S3', 'putObject', function(params) {
-            throw new Error('Hello World');
-        })
-
-        new AWS.S3().putObject({
-            test: 'test'
-        }, function(err, resp) {
-            assert.equal(err.message, 'Hello World');
-            assert.equal(resp, null)
-            assert.equal(MockAWSSinon('S3', 'putObject').calledOnce, true);            
-            done();
-        })
-    })
 })
