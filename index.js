@@ -109,6 +109,12 @@ module.exports = function(service, method, func) {
 module.exports.restore = function() {
     cachedStubs = {};
     stubbedRequestSend = false;
-    AWS.Request.prototype.send.restore();
-    AWS.Request.prototype.promise.restore();
+
+    if (AWS.Request.prototype.send.restore) {
+        AWS.Request.prototype.send.restore();
+    }
+    
+    if (AWS.Request.prototype.promise.restore) {
+        AWS.Request.prototype.promise.restore();
+    }
 }

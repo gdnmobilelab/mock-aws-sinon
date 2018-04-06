@@ -95,4 +95,8 @@ describe("AWS Mock Sinon", function() {
             done();
         })
     })
+
+    it("Let's you call restore before setting anything", function() {
+        MockAWSSinon.restore();
+    });
 })
