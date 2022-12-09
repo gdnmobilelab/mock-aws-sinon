@@ -14,10 +14,10 @@ var getKey = function(service, method) {
 
 // Support sinon pre and post v2
 var stub = function(obj, key, func) {
-    if (sinon.stub.callsFake) {
-        sinon.stub(obj, key).callsFake(func);
-    } else {
+    try {
         sinon.stub(obj, key, func);
+    } catch (err) {
+        sinon.stub(obj, key).callsFake(func);
     }
 }
 
