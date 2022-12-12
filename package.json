@@ -1,6 +1,6 @@
 {
   "name": "mock-aws-sinon",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,14 +9,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "aws-sdk": "^2.3.4",
+    "aws-sdk": "^2.1270.0",
     "mocha": "5.0.4",
-    "sinon": "^4.0.1"
+    "sinon": "^15.0.0"
   },
   "peerDependencies": {
-    "aws-sdk": "^2.3.4",
-    "sinon": "^4.1.3"
+    "aws-sdk": "^2.1270.0",
+    "sinon": ">=4.1.3"
   },
+  "types": "./index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/gdnmobilelab/mock-aws-sinon.git"
